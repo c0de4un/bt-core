@@ -74,48 +74,31 @@ namespace bt
 		// CONSTRUCTOR & DESTRUCTOR
 		// ===========================================================
 
-		Engine::Engine()
+		Engine::Engine(const ECSTypeID typeID)
+			: System(typeID)
 		{
 		}
 
 		Engine::~Engine()
 		{
-			this->StopEngine();
+			System::Stop();
 		}
 
 		// ===========================================================
-		// bt::core::ISystem
-		// ===========================================================
-
-		bool Engine::StartSystem()
-		{// @TODO Engine::StartSystem
-			return false;
-		}
-
-		void Engine::PauseSystem()
-		{// @TODO Engine::PauseSystem
-		}
-
-		void Engine::StopSystem()
-		{// @TODO Engine::StopSystem
-		}
-
-		// ===========================================================
-		// METHODS
+		// bt::ecs::System
 		// ===========================================================
 
 		bool Engine::onStart()
 		{// @TODO Engine::onStart
-
 #ifdef BT_DEBUG // DEBUG
-			bt_Log::Print( u8"Engine::onStart", bt_LogLevel::Info );
+			bt_Log::Print(u8"Engine::onStart", bt_LogLevel::Info);
 #endif // DEBUG
 
 			return false;
 		}
 
 		bool Engine::onResume()
-		{// @TODO Engine::Resume
+		{// @TODO Engine::onResume
 #ifdef BT_DEBUG // DEBUG
 			bt_Log::Print(u8"Engine::onResume", bt_LogLevel::Info);
 #endif // DEBUG
@@ -136,6 +119,12 @@ namespace bt
 			bt_Log::Print(u8"Engine::onStop", bt_LogLevel::Info);
 #endif // DEBUG
 		}
+
+		// ===========================================================
+		// METHODS
+		// ===========================================================
+
+
 
 		// -----------------------------------------------------------
 

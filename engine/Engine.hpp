@@ -39,10 +39,10 @@
 // INCLUDES
 // ===========================================================
 
-// Include bt::core::IEngine
-#ifndef BT_CORE_I_ENGINE_HXX
-#include "IEngine.hxx"
-#endif // !BT_CORE_I_ENGINE_HXX
+// Include ecs::System
+#ifndef ECS_SYSTEM_HPP
+#include "../../ecs/systems/System.hpp"
+#endif // !ECS_SYSTEM_HPP
 
 // ===========================================================
 // TYPES
@@ -62,7 +62,7 @@ namespace bt
 		 *
 		 * @version 0.1
 		**/
-		class BT_API Engine : public bt_IEngine
+		class BT_API Engine : public ecs_System
 		{
 
 			// -----------------------------------------------------------
@@ -70,6 +70,8 @@ namespace bt
 			// ===========================================================
 			// META
 			// ===========================================================
+
+			BT_CLASS
 
 			// -----------------------------------------------------------
 
@@ -104,9 +106,10 @@ namespace bt
 			 * @brief
 			 * Engine constructor.
 			 * 
+			 * @param typeID - Engine Type-ID, defautl is Engine-Type..
 			 * @throws - can throw exception.
 			**/
-			explicit Engine();
+			explicit Engine( const ECSTypeID typeID = 1 );
 
 			/**
 			 * @brief
@@ -121,79 +124,50 @@ namespace bt
 			// ===========================================================
 
 			// ===========================================================
-			// bt::core::ISystem
+			// bt::ecs::System
 			// ===========================================================
 
 			/**
 			 * @brief
-			 * Start/Resume System.
+			 * Called when System starting.
 			 *
-			 * @thread_safety - thread-locks used.
-			 * @return - 'true' if OK, 'false' if error.
+			 * @thread_safety - thread-lock used.
 			 * @throws - can throw exception.
 			**/
-			virtual bool StartSystem() final;
+			virtual bool onStart() override;
 
 			/**
 			 * @brief
-			 * Pause System.
+			 * Called whe System resuming from pause.
 			 *
-			 * @thread_safety - thread-locks used.
+			 * @thread_safety - thread-lock used.
 			 * @throws - can throw exception.
 			**/
-			virtual void PauseSystem() final;
+			virtual bool onResume() override;
 
 			/**
 			 * @brief
-			 * Stop System.
-			 * Unlikely #Pause, release (unload) all related resources.
+			 * Called whe System pausing.
 			 *
-			 * @thread_safety - thread-locks used.
-			 * @throws - no exceptions.
+			 * @thread_safety - thread-lock used.
+			 * @throws - can throw exception.
 			**/
-			virtual void StopSystem() final;
+			virtual void onPause() override;
+
+			/**
+			 * @brief
+			 * Called whe System stopping.
+			 *
+			 * @thread_safety - thread-lock used.
+			 * @throws - can throw exception.
+			**/
+			virtual void onStop() override;
 
 			// ===========================================================
 			// METHODS
 			// ===========================================================
 
-			/**
-			 * @brief
-			 * Called on Start.
-			 * 
-			 * @thread_safety - thread-safe.
-			 * @return - 'true' if OK, 'false' if error.
-			 * @throws - can throw exception.
-			**/
-			virtual bool onStart();
 
-			/**
-			 * @brief
-			 * Called on Resume (unpause).
-			 * 
-			 * @thread_safety - thread-safe.
-			 * @return - 'true' if OK, 'false' if error.
-			 * @throws - can throw exception.
-			**/
-			virtual bool onResume();
-
-			/**
-			 * @brief
-			 * Called upon Pause.
-			 * 
-			 * @thread_safety - thread-safe.
-			 * @throws - can throw exception.
-			**/
-			virtual void onPause();
-
-			/**
-			 * @brief
-			 * Called on Stop.
-			 * 
-			 * @thread_safety - thread-safe.
-			 * @throws - can throw exception.
-			**/
-			virtual void onStop();
 
 			// -----------------------------------------------------------
 
@@ -204,6 +178,7 @@ namespace bt
 	} /// bt::core
 
 } /// bt
+
 using bt_Engine = bt::core::Engine;
 #define BT_CORE_ENGINE_DECL
 

@@ -58,12 +58,11 @@
 // FORWARD-DECLARATIONS
 // ===========================================================
 
-// Forward-declare bt::core::IEngine
-#ifndef BT_CORE_I_ENGINE_DECL
-#define BT_CORE_I_ENGINE_DECL
-namespace bt { namespace core { class IEngine; } }
-using bt_IEngine = bt::core::IEngine;
-#endif // !BT_CORE_I_ENGINE_DECL
+// Forward-declare bt::core::Engine
+#ifndef BT_CORE_ENGINE_DECL
+namespace bt { namespace core { class Engine; } }
+using bt_Engine = bt::core::Engine;
+#endif // !BT_CORE_ENGINE_DECL
 
 // ===========================================================
 // TYPES
@@ -99,8 +98,8 @@ namespace bt
 		// FIELDS
 		// ===========================================================
 
-		/** bt::core::IEngine instance. **/
-		static bt_sptr<bt_IEngine> mEngine;
+		/** bt::core::Engine instance. **/
+		static bt_sptr<bt_Engine> mEngine;
 		
 		// ===========================================================
 		// CONSTRUCTOR
@@ -142,13 +141,13 @@ namespace bt
 
 		/**
 		 * @brief
-		 * Returns current IEngine instance.
+		 * Returns current Engine instance.
 		 * 
 		 * @thread_safety - weak-pointer used (thread-lock).
-		 * @return - weak-pointer to the IEngine, or null.
+		 * @return - weak-pointer to the Engine, or null.
 		 * @throws - no exceptions.
 		**/
-		static BT_API bt_wptr<bt_IEngine> getEngine() BT_NOEXCEPT;
+		static BT_API bt_sptr<bt_Engine> getEngine() BT_NOEXCEPT;
 
 		// ===========================================================
 		// METHODS
@@ -159,10 +158,10 @@ namespace bt
 		 * Initialize Engine.
 		 * 
 		 * @thread_safety - main (system/ui) thread-only.
-		 * @param engineInstance - IEngine implementation.
+		 * @param engineInstance - Engine implementation.
 		 * @throws - can throw exception.
 		**/
-		static BT_API void Initialize( bt_sptr<bt_IEngine>& engineInstance );
+		static BT_API void Initialize( bt_sptr<bt_Engine>& engineInstance );
 
 		/**
 		 * @brief

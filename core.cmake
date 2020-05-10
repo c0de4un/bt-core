@@ -28,12 +28,12 @@ set ( BT_CORE_HEADERS
 	"core/utils/text/String.hpp"
 	# GRAPHICS
 	"core/graphics/IGraphics.hxx"
-	"core/graphics/BaseGraphics.hpp"
+	"core/graphics/GraphicsSettings.hpp"
+	"core/graphics/GraphicsSystem.hpp"
 	# RENDER
 	# LOGIC
 	# AUDIO
 	# ENGINE
-	"core/engine/IEngine.hxx"
 	"core/engine/Engine.hpp"
 	# CORE
 	"core/bt.hpp" )
@@ -56,7 +56,7 @@ set ( BT_CORE_SOURCES
 	# TEXT
 	"core/utils/text/String.cpp"
 	# GRAPHICS
-	"core/graphics/BaseGraphics.cpp"
+	"core/graphics/GraphicsSystem.cpp"
 	# RENDER
 	# LOGIC
 	# AUDIO

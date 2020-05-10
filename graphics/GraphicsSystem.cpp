@@ -37,12 +37,12 @@
 // ===========================================================
 
 // HEADER
-#ifndef BT_CORE_BASE_GRAPHICS_HPP
-#include "BaseGraphics.hpp"
-#endif // !BT_CORE_BASE_GRAPHICS_HPP
+#ifndef BT_CORE_GRAPHICS_SYSTEM_HPP
+#include "GraphicsSystem.hpp"
+#endif // !BT_CORE_GRAPHICS_SYSTEM_HPP
 
 // ===========================================================
-// bt::core::BaseGraphics
+// bt::core::GraphicsSystem
 // ===========================================================
 
 namespace bt

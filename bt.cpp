@@ -46,6 +46,11 @@
 #include "../ecs/ecs.hpp"
 #endif // !BT_ECS_HPP
 
+// Include bt::core::Engine
+#ifndef BT_CORE_ENGINE_HPP
+#include "engine/Engine.hpp"
+#endif // !BT_CORE_ENGINE_HPP
+
 // DEBUG
 #ifdef BT_DEBUG
 
@@ -75,7 +80,7 @@ namespace bt
 	// CONSTANTS & FIELDS
 	// ===========================================================
 
-	bt_sptr<bt_IEngine> API::mEngine( nullptr );
+	bt_sptr<bt_Engine> API::mEngine( nullptr );
 
 	// ===========================================================
 	// CONSTRUCTOR & DESTRUCTOR
@@ -93,14 +98,14 @@ namespace bt
 	// GETTERS & SETTERS
 	// ===========================================================
 
-	bt_wptr<bt_IEngine> API::getEngine() BT_NOEXCEPT
+	bt_sptr<bt_Engine> API::getEngine() BT_NOEXCEPT
 	{ return mEngine; }
 
 	// ===========================================================
 	// METHODS
 	// ===========================================================
 
-	void API::Initialize(bt_sptr<bt_IEngine>& engineInstance)
+	void API::Initialize(bt_sptr<bt_Engine>& engineInstance)
 	{
 
 #ifdef BT_DEBUG // DEBUG

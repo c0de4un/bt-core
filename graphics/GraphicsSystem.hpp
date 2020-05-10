@@ -30,8 +30,8 @@
 * POSSIBILITY OF SUCH DAMAGE.
 **/
 
-#ifndef BT_CORE_BASE_GRAPHICS_HPP
-#define BT_CORE_BASE_GRAPHICS_HPP
+#ifndef BT_CORE_GRAPHICS_SYSTEM_HPP
+#define BT_CORE_GRAPHICS_SYSTEM_HPP
 
 // -----------------------------------------------------------
 
@@ -73,12 +73,12 @@ namespace bt
 
 		/**
 		 * @brief
-		 * BaseGraphics - base graphics manager implementation.
+		 * GraphicsSystem - base graphics manager implementation.
 		 * 
 		 * @version 0.1
 		**/
-		class BT_API BaseGraphics : public bt_IGraphics
-		{// @TODO BaseGraphics
+		class BT_API GraphicsSystem : public bt_IGraphics
+		{// @TODO GraphicsSystem
 
 			// -----------------------------------------------------------
 
@@ -106,10 +106,10 @@ namespace bt
 			// DELETED
 			// ===========================================================
 
-			BaseGraphics(const BaseGraphics&) = delete;
-			BaseGraphics& operator=(const BaseGraphics&) = delete;
-			BaseGraphics(BaseGraphics&&) = delete;
-			BaseGraphics& operator=(BaseGraphics&&) = delete;
+			GraphicsSystem(const GraphicsSystem&) = delete;
+			GraphicsSystem& operator=(const GraphicsSystem&) = delete;
+			GraphicsSystem(GraphicsSystem&&) = delete;
+			GraphicsSystem& operator=(GraphicsSystem&&) = delete;
 
 			// -----------------------------------------------------------
 
@@ -123,11 +123,11 @@ namespace bt
 
 			/**
 			 * @brief
-			 * BaseGraphics destructor.
+			 * GraphicsSystem destructor.
 			 * 
 			 * @throws - can throw exception.
 			**/
-			virtual ~BaseGraphics();
+			virtual ~GraphicsSystem();
 
 			// ===========================================================
 			// GETTERS & SETTERS
@@ -147,16 +147,16 @@ namespace bt
 
 			// -----------------------------------------------------------
 
-		}; /// bt::core::BaseGraphics
+		}; /// bt::core::GraphicsSystem
 
 		// -----------------------------------------------------------
 
 	} /// bt::core
 
 } /// bt
-using bt_BaseGraphics = bt::core::BaseGraphics;
-#define BT_CORE_BASE_GRAPHICS_DECL
+using bt_GraphicsSystem = bt::core::GraphicsSystem;
+#define BT_CORE_GRAPHICS_SYSTEM_DECL
 
 // -----------------------------------------------------------
 
-#endif // !BT_CORE_BASE_GRAPHICS_HPP
+#endif // !BT_CORE_GRAPHICS_SYSTEM_HPP
