@@ -62,7 +62,7 @@
 #ifndef BT_CORE_I_ENGINE_DECL
 #define BT_CORE_I_ENGINE_DECL
 namespace bt { namespace core { class IEngine; } }
-using btIEngine = bt::core::IEngine;
+using bt_IEngine = bt::core::IEngine;
 #endif // !BT_CORE_I_ENGINE_DECL
 
 // ===========================================================
@@ -74,7 +74,7 @@ namespace bt
 
 	/**
 	 * @brief
-	 * API - common access provieder to btEngine API.
+	 * API - common access provieder to bt_Engine API.
 	 * Allows to avoid manual caching & managing API-objects, like Engine, Renderer, etc.,
 	 * providing thread-safe handlerswithout knowing specific implementations.
 	 * 
@@ -100,7 +100,7 @@ namespace bt
 		// ===========================================================
 
 		/** bt::core::IEngine instance. **/
-		static bt_sptr<btIEngine> mEngine;
+		static bt_sptr<bt_IEngine> mEngine;
 		
 		// ===========================================================
 		// CONSTRUCTOR
@@ -148,7 +148,7 @@ namespace bt
 		 * @return - weak-pointer to the IEngine, or null.
 		 * @throws - no exceptions.
 		**/
-		static BT_API bt_wptr<btIEngine> getEngine() BT_NOEXCEPT;
+		static BT_API bt_wptr<bt_IEngine> getEngine() BT_NOEXCEPT;
 
 		// ===========================================================
 		// METHODS
@@ -162,7 +162,7 @@ namespace bt
 		 * @param engineInstance - IEngine implementation.
 		 * @throws - can throw exception.
 		**/
-		static BT_API void Initialize( bt_sptr<btIEngine>& engineInstance );
+		static BT_API void Initialize( bt_sptr<bt_IEngine>& engineInstance );
 
 		/**
 		 * @brief

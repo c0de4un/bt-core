@@ -37,12 +37,12 @@
 // ===========================================================
 
 // HEADER
-#ifndef BT_CORE_BASE_LOG_HPP
-#include "BaseLog.hpp"
-#endif // !BT_CORE_BASE_LOG_HPP
+#ifndef BT_CORE_BASE_GRAPHICS_HPP
+#include "BaseGraphics.hpp"
+#endif // !BT_CORE_BASE_GRAPHICS_HPP
 
 // ===========================================================
-// TYPES
+// bt::core::BaseGraphics
 // ===========================================================
 
 namespace bt
@@ -52,96 +52,6 @@ namespace bt
 	{
 
 		// -----------------------------------------------------------
-
-		// ===========================================================
-		// CONSTRUCTOR & DESTRUCTOR
-		// ===========================================================
-
-		BaseLog::BaseLog()
-		{
-		}
-
-		BaseLog::~BaseLog()
-		{
-		}
-
-		// ===========================================================
-		// METHODS
-		// ===========================================================
-
-		void BaseLog::Info(const char* const pMsg)
-		{
-		}
-
-		void BaseLog::Info_W(const wchar_t* const pMsg)
-		{
-		}
-
-		void BaseLog::Debug(const char* const pMsg)
-		{
-		}
-
-		void BaseLog::Debug_W(const wchar_t* const pMsg)
-		{
-		}
-
-		void BaseLog::Warning(const char* const pMsg)
-		{
-		}
-
-		void BaseLog::Warning_W(const wchar_t* const pMsg)
-		{
-		}
-
-		void BaseLog::Error(const char* const pMsg)
-		{
-		}
-
-		void BaseLog::Error_W(const wchar_t* const pMsg)
-		{
-		}
-
-		// ===========================================================
-		// ILog
-		// ===========================================================
-
-		void BaseLog::Print(const char* const pMsg, const bt_LogLevel logLvl)
-		{
-			switch( logLvl )
-			{
-			case bt_LogLevel::Info:
-				Info( pMsg );
-				break;
-			case bt_LogLevel::Debug:
-				Debug( pMsg );
-				break;
-			case bt_LogLevel::Warning:
-				Warning( pMsg );
-				break;
-			case bt_LogLevel::Error:
-				Error( pMsg );
-				break;
-			}
-		}
-
-		void BaseLog::Print_W(const wchar_t* const pMsg, const bt_LogLevel logLvl)
-		{
-			switch ( logLvl )
-			{
-			case bt_LogLevel::Info:
-				Info_W(pMsg);
-				break;
-			case bt_LogLevel::Debug:
-				Debug_W(pMsg);
-				break;
-			case bt_LogLevel::Warning:
-				Warning_W(pMsg);
-				break;
-			case bt_LogLevel::Error:
-				Error_W(pMsg);
-				break;
-			}
-		}
 
 		// -----------------------------------------------------------
 

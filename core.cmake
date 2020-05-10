@@ -1,6 +1,6 @@
 # // ------------------------------------------------------------------------------
 #
-# btEngine.Core
+# bt_Engine.Core
 #
 # // ------------------------------------------------------------------------------
 
@@ -18,9 +18,20 @@ set ( BT_CORE_HEADERS
 	"core/utils/async/ILock.hxx"
 	"core/utils/async/Mutex.hpp"
 	"core/utils/async/BaseLock.hpp"
+	# CONTAINERS
+	"core/utils/containers/AsyncVector.hpp"
+	"core/utils/containers/AsyncMap.hpp"
+	"core/utils/containers/IMapIterator.hxx"
+	"core/utils/containers/AsyncQueue.hpp"
 	# TEXT
 	"core/utils/text/IString.hxx"
 	"core/utils/text/String.hpp"
+	# GRAPHICS
+	"core/graphics/IGraphics.hxx"
+	"core/graphics/BaseGraphics.hpp"
+	# RENDER
+	# LOGIC
+	# AUDIO
 	# ENGINE
 	"core/engine/IEngine.hxx"
 	"core/engine/Engine.hpp"
@@ -41,8 +52,14 @@ set ( BT_CORE_SOURCES
 	# ASYNC
 	"core/utils/async/Mutex.cpp"
 	"core/utils/async/BaseLock.cpp"
+	# CONTAINERS
 	# TEXT
 	"core/utils/text/String.cpp"
+	# GRAPHICS
+	"core/graphics/BaseGraphics.cpp"
+	# RENDER
+	# LOGIC
+	# AUDIO
 	# ENGINE
 	"core/engine/Engine.cpp"
 	# CORE

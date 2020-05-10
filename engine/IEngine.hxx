@@ -39,7 +39,7 @@
 // INCLUDES
 // ===========================================================
 
-// Include btEngine API
+// Include bt_Engine API
 #ifndef BT_CFG_API_HPP
 #include "../../config/bt_api.hpp"
 #endif // !BT_CFG_API_HPP
@@ -149,7 +149,7 @@ namespace bt
 	} /// bt::core
 
 } /// bt
-using btIEngine = bt::core::IEngine;
+using bt_IEngine = bt::core::IEngine;
 #define BT_CORE_I_ENGINE_DECL
 
 // -----------------------------------------------------------

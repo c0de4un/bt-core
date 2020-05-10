@@ -73,7 +73,7 @@ namespace bt
 		 * @version 0.1
 		 * @authors Denis Z. (code4un@yandex.ru)
 		**/
-		class BT_API Mutex : public btIMutex
+		class BT_API Mutex : public bt_IMutex
 		{
 			
 			// -----------------------------------------------------------

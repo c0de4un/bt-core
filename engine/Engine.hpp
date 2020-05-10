@@ -62,7 +62,7 @@ namespace bt
 		 *
 		 * @version 0.1
 		**/
-		class BT_API Engine : public btIEngine
+		class BT_API Engine : public bt_IEngine
 		{
 
 			// -----------------------------------------------------------
@@ -175,7 +175,7 @@ namespace bt
 			 * @return - 'true' if OK, 'false' if error.
 			 * @throws - can throw exception.
 			**/
-			virtual bool Resume();
+			virtual bool onResume();
 
 			/**
 			 * @brief
@@ -204,7 +204,7 @@ namespace bt
 	} /// bt::core
 
 } /// bt
-using btEngine = bt::core::Engine;
+using bt_Engine = bt::core::Engine;
 #define BT_CORE_ENGINE_DECL
 
 // -----------------------------------------------------------

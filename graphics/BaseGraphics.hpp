@@ -30,8 +30,8 @@
 * POSSIBILITY OF SUCH DAMAGE.
 **/
 
-#ifndef BT_CORE_BASE_LOG_HPP
-#define BT_CORE_BASE_LOG_HPP
+#ifndef BT_CORE_BASE_GRAPHICS_HPP
+#define BT_CORE_BASE_GRAPHICS_HPP
 
 // -----------------------------------------------------------
 
@@ -39,10 +39,25 @@
 // INCLUDES
 // ===========================================================
 
-// Include bt::core::ILog
-#ifndef BT_CORE_I_LOG_HXX
-#include "ILog.hxx"
-#endif // !BT_CORE_I_LOG_HXX
+// Include bt::core::IGraphics
+#ifndef BT_CORE_I_GRAPHICS_HXX
+#include "IGraphics.hxx"
+#endif // !BT_CORE_I_GRAPHICS_HXX
+
+// Include bt::ecs::ISystem
+#ifndef BT_ECS_I_SYSTEM_HXX
+#endif // !BT_ECS_I_SYSTEM_HXX
+
+// Include bt::ecs::IEventsListener
+#ifndef BT_ECS_I_EVENTS_LISTENER_HXX
+
+#endif // !BT_ECS_I_EVENTS_LISTENER_HXX
+
+// ===========================================================
+// FORWARD-DECLARATIONS
+// ===========================================================
+
+// Forward-Declare bt::core::IRender
 
 // ===========================================================
 // TYPES
@@ -58,12 +73,12 @@ namespace bt
 
 		/**
 		 * @brief
-		 * BaseLog - base log class.
+		 * BaseGraphics - base graphics manager implementation.
 		 * 
 		 * @version 0.1
 		**/
-		class BT_API BaseLog : public btILog
-		{
+		class BT_API BaseGraphics : public bt_IGraphics
+		{// @TODO BaseGraphics
 
 			// -----------------------------------------------------------
 
@@ -80,117 +95,21 @@ namespace bt
 			// -----------------------------------------------------------
 
 			// ===========================================================
-			// DELETED
+			// FIELDS
 			// ===========================================================
-
-			BaseLog(const BaseLog&) = delete;
-			BaseLog& operator=(const BaseLog&) = delete;
-			BaseLog(BaseLog&&) = delete;
-			BaseLog& operator=(BaseLog&&) = delete;
 
 			// ===========================================================
 			// CONSTRUCTOR
 			// ===========================================================
 
-			/**
-			 * @brief
-			 * BaseLog constructor.
-			 *
-			 * @throws - no exceptions.
-			**/
-			explicit BaseLog();
-
 			// ===========================================================
-			// METHODS
+			// DELETED
 			// ===========================================================
 
-			/**
-			 * @brief
-			 *
-			 * Print INFO-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Info(const char* const pMsg);
-
-			/**
-			 * @brief
-			 *
-			 * Print INFO-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Info_W(const wchar_t* const pMsg);
-
-			/**
-			 * @brief
-			 *
-			 * Print DEBUG-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Debug(const char* const pMsg);
-
-			/**
-			 * @brief
-			 *
-			 * Print DEBUG-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Debug_W(const wchar_t* const pMsg);
-
-			/**
-			 * @brief
-			 *
-			 * Print WARNING-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Warning(const char* const pMsg);
-
-			/**
-			 * @brief
-			 *
-			 * Print WARNING-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Warning_W(const wchar_t* const pMsg);
-
-			/**
-			 * @brief
-			 *
-			 * Print ERROR-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Error(const char* const pMsg);
-
-			/**
-			 * @brief
-			 *
-			 * Print ERROR-Level Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @throws - can throw exception.
-			**/
-			virtual void Error_W(const wchar_t* const pMsg);
+			BaseGraphics(const BaseGraphics&) = delete;
+			BaseGraphics& operator=(const BaseGraphics&) = delete;
+			BaseGraphics(BaseGraphics&&) = delete;
+			BaseGraphics& operator=(BaseGraphics&&) = delete;
 
 			// -----------------------------------------------------------
 
@@ -204,53 +123,40 @@ namespace bt
 
 			/**
 			 * @brief
-			 * BaseLog destructor.
+			 * BaseGraphics destructor.
 			 * 
-			 * @throws - no exceptions.
-			**/
-			virtual ~BaseLog();
-
-			// ===========================================================
-			// ILog
-			// ===========================================================
-
-			/**
-			 * @brief
-			 * Print Log-message.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @param logLvl - Log-Level (Info, Debug, etc).
 			 * @throws - can throw exception.
 			**/
-			virtual void Print(const char* const pMsg, const bt_LogLevel logLvl) final;
+			virtual ~BaseGraphics();
 
-			/**
-			 * @brief
-			 * Print Log-message, using wchar_t.
-			 *
-			 * (?) Event if this method does exists, still, avoid using it.
-			 * Some platforms (Android) doesn't use wchar_t at all, instead
-			 * multi-byte char (2 chars per symbol) used by default.
-			 *
-			 * @thread_safety - thread-safe.
-			 * @param pMsg - Log-Message to print.
-			 * @param logLvl - Log-Level (Info, Debug, etc).
-			 * @throws - can throw exception.
-			**/
-			virtual void Print_W(const wchar_t* const pMsg, const bt_LogLevel logLvl) final;
+			// ===========================================================
+			// GETTERS & SETTERS
+			// ===========================================================
+
+			// ===========================================================
+			// bt::core::IGraphics
+			// ===========================================================
+
+			// ===========================================================
+			// bt::ecs::ISystem
+			// ===========================================================
+
+			// ===========================================================
+			// METHODS
+			// ===========================================================
 
 			// -----------------------------------------------------------
 
-		}; /// bt::core::BaseLog
+		}; /// bt::core::BaseGraphics
 
 		// -----------------------------------------------------------
 
 	} /// bt::core
 
 } /// bt
-using btBaseLog = bt::core::BaseLog;
+using bt_BaseGraphics = bt::core::BaseGraphics;
+#define BT_CORE_BASE_GRAPHICS_DECL
 
 // -----------------------------------------------------------
 
-#endif // !BT_CORE_BASE_LOG_HPP
+#endif // !BT_CORE_BASE_GRAPHICS_HPP

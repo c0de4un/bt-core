@@ -30,8 +30,8 @@
 * POSSIBILITY OF SUCH DAMAGE.
 **/
 
-#ifndef BT_CORE_BASE_LOCK_HPP
-#define BT_CORE_BASE_LOCK_HPP
+#ifndef BT_CORE_ASYNC_QUEUE_HPP
+#define BT_CORE_ASYNC_QUEUE_HPP
 
 // -----------------------------------------------------------
 
@@ -39,10 +39,15 @@
 // INCLUDES
 // ===========================================================
 
-// Include bt::core::ILock
-#ifndef BT_CORE_I_LOCK_HXX
-#include "ILock.hxx"
-#endif // !BT_CORE_I_LOCK_HXX
+// Include bt::api
+#ifndef BT_CFG_API_HPP
+#include "../../../config/bt_api.hpp"
+#endif // !BT_CFG_API_HPP
+
+// Include bt::numeric
+#ifndef BT_CFG_NUMERIC_HPP
+#include "../../../config/bt_numeric.hpp"
+#endif // !BT_CFG_NUMERIC_HPP
 
 // ===========================================================
 // TYPES
@@ -58,13 +63,13 @@ namespace bt
 
 		/**
 		 * @brief
-		 * BaseLock - base thread-lock class.
-		 * Allows to avoid platform-specific implementation.
-		 * 
+		 * AsyncQueue - double-ended queue container implementation with async read/write support.
+		 *
 		 * @version 0.1
 		**/
-		class BT_API BaseLock : public btILock
-		{
+		template<typename T>
+		class BT_API AsyncQueue final
+		{// @TODO AsyncQueue
 
 			// -----------------------------------------------------------
 
@@ -76,7 +81,7 @@ namespace bt
 
 			// -----------------------------------------------------------
 
-		protected:
+		private:
 
 			// -----------------------------------------------------------
 
@@ -84,32 +89,15 @@ namespace bt
 			// FIELDS
 			// ===========================================================
 
-			/** Mutex. **/
-			bt_IMutex* mMutex;
-
-			// ===========================================================
-			// CONSTRUCTOR
-			// ===========================================================
-
-			/**
-			 * @brief
-			 * BaseLock constructor.
-			 * 
-			 * @param pMutex - mutex to store. Automatically unlocked, not deleted (instance not managed).
-			 * @param defferLock - 'false' to lock mutex, 'true' to delay until #lock called.
-			 * @throws - no exceptions.
-			**/
-			explicit BaseLock( bt_IMutex* const pMutex = nullptr, const bool defferLock = true );
-
 			// ===========================================================
 			// DELETED
 			// ===========================================================
 
-			BaseLock(const BaseLock&) = delete;
-			BaseLock& operator=(const BaseLock&) = delete;
-			BaseLock(BaseLock&&) = delete;
-			BaseLock& operator=(BaseLock&&) = delete;
-			
+			AsyncQueue(const AsyncQueue&) = delete;
+			AsyncQueue& operator=(const AsyncQueue&) = delete;
+			AsyncQueue(AsyncQueue&&) = delete;
+			AsyncQueue& operator=(AsyncQueue&&) = delete;
+
 			// -----------------------------------------------------------
 
 		public:
@@ -117,42 +105,31 @@ namespace bt
 			// -----------------------------------------------------------
 
 			// ===========================================================
+			// CONSTRUCTORS
+			// ===========================================================
+
+			// ===========================================================
 			// DESTRUCTOR
 			// ===========================================================
 
-			/**
-			 * @brief
-			 * BaseLock destructor.
-			 * 
-			 * @throws - no exceptions.
-			**/
-			virtual ~BaseLock() BT_NOEXCEPT;
-
 			// ===========================================================
-			// GETTERS & SETTERS
+			// METHODS
 			// ===========================================================
-
-			/**
-			 * @brief
-			 * Returns lock.
-			 *
-			 * @thread_safety - not thread-safe.
-			 * @throws - no exceptions.
-			**/
-			virtual bt_IMutex* getMutex() BT_NOEXCEPT final;
 
 			// -----------------------------------------------------------
 
-		}; /// bt::core::BaseLock
+		}; /// bt::core::AsyncQueue
 
 		// -----------------------------------------------------------
 
 	} /// bt::core
 
 } /// bt
-using bt_BaseLock = bt::core::BaseLock;
-#define BT_CORE_BASE_LOCK_DECL
+template <typename T>
+using bt_AsyncQueue = bt::core::AsyncQueue;
+
+#define BT_CORE_ASYNC_QUEUE_DECL
 
 // -----------------------------------------------------------
 
-#endif // !BT_CORE_BASE_LOCK_HPP
+#endif // !BT_CORE_ASYNC_QUEUE_HPP

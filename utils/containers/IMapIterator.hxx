@@ -30,16 +30,19 @@
 * POSSIBILITY OF SUCH DAMAGE.
 **/
 
+#ifndef BT_CORE_I_MAP_ITERATOR_HXX
+#define BT_CORE_I_MAP_ITERATOR_HXX
+
 // -----------------------------------------------------------
 
 // ===========================================================
 // INCLUDES
 // ===========================================================
 
-// HEADER
-#ifndef BT_CORE_BASE_LOG_HPP
-#include "BaseLog.hpp"
-#endif // !BT_CORE_BASE_LOG_HPP
+// Include bt::API
+#ifndef BT_CFG_API_HPP
+#include "../../../config/bt_api.hpp"
+#endif // !BT_CFG_API_HPP
 
 // ===========================================================
 // TYPES
@@ -53,95 +56,59 @@ namespace bt
 
 		// -----------------------------------------------------------
 
-		// ===========================================================
-		// CONSTRUCTOR & DESTRUCTOR
-		// ===========================================================
-
-		BaseLog::BaseLog()
+		/**
+		 * @brief
+		 * IMapIterator - interface for map iteration.
+		 * (?) Using interface & object instance gives more advantages
+		 * in compare with static-method pointers. Just one condition for
+		 * thread-safety - instance must be valid until iteration stopped.
+		 * 
+		 * @version 0.1
+		**/
+		class BT_API IMapIterator
 		{
-		}
 
-		BaseLog::~BaseLog()
-		{
-		}
+			// -----------------------------------------------------------
 
-		// ===========================================================
-		// METHODS
-		// ===========================================================
+			// ===========================================================
+			// META
+			// ===========================================================
 
-		void BaseLog::Info(const char* const pMsg)
-		{
-		}
+			ECS_INTERFACE
 
-		void BaseLog::Info_W(const wchar_t* const pMsg)
-		{
-		}
+			// -----------------------------------------------------------
 
-		void BaseLog::Debug(const char* const pMsg)
-		{
-		}
+		public:
 
-		void BaseLog::Debug_W(const wchar_t* const pMsg)
-		{
-		}
+			// -----------------------------------------------------------
 
-		void BaseLog::Warning(const char* const pMsg)
-		{
-		}
+			// ===========================================================
+			// DESTRUCTOR
+			// ===========================================================
 
-		void BaseLog::Warning_W(const wchar_t* const pMsg)
-		{
-		}
-
-		void BaseLog::Error(const char* const pMsg)
-		{
-		}
-
-		void BaseLog::Error_W(const wchar_t* const pMsg)
-		{
-		}
-
-		// ===========================================================
-		// ILog
-		// ===========================================================
-
-		void BaseLog::Print(const char* const pMsg, const bt_LogLevel logLvl)
-		{
-			switch( logLvl )
+			virtual ~IMapIterator()
 			{
-			case bt_LogLevel::Info:
-				Info( pMsg );
-				break;
-			case bt_LogLevel::Debug:
-				Debug( pMsg );
-				break;
-			case bt_LogLevel::Warning:
-				Warning( pMsg );
-				break;
-			case bt_LogLevel::Error:
-				Error( pMsg );
-				break;
 			}
-		}
 
-		void BaseLog::Print_W(const wchar_t* const pMsg, const bt_LogLevel logLvl)
-		{
-			switch ( logLvl )
-			{
-			case bt_LogLevel::Info:
-				Info_W(pMsg);
-				break;
-			case bt_LogLevel::Debug:
-				Debug_W(pMsg);
-				break;
-			case bt_LogLevel::Warning:
-				Warning_W(pMsg);
-				break;
-			case bt_LogLevel::Error:
-				Error_W(pMsg);
-				break;
-			}
-		}
+			// ===========================================================
+			// METHODS
+			// ===========================================================
+
+			/**
+			 * @brief
+			 * Called on map iteration.
+			 * 
+			 * @thread_safety - called while thread-lock.
+			 * @param pKey - Key.
+			 * @param pVal - Value.
+			 * @return 'true' to stop & return value.
+			 * @throws - no exceptions.
+			**/
+			virtual const void* onIterateMap( const void* pKey, void* pVal ) BT_NOEXCEPT = 0;
+
+			// -----------------------------------------------------------
+
+		}; /// bt::core::IMapIterator
 
 		// -----------------------------------------------------------
 
@@ -149,4 +116,10 @@ namespace bt
 
 } /// bt
 
+using bt_IMapIterator = bt::core::IMapIterator;
+
+#define BT_CORE_I_MAP_ITERATOR_DECL
+
 // -----------------------------------------------------------
+
+#endif // !BT_CORE_I_MAP_ITERATOR_HXX

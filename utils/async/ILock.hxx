@@ -39,7 +39,7 @@
 // INCLUDES
 // ===========================================================
 
-// Include btEngine.API
+// Include bt_Engine.API
 #ifndef BT_CFG_API_HPP
 #include "../../../config/bt_api.hpp"
 #endif // !BT_CFG_API_HPP
@@ -52,7 +52,7 @@
 #ifndef BT_CORE_I_MUTEX_DECL
 #define BT_CORE_I_MUTEX_DECL
 namespace bt { namespace core { class IMutex; } }
-using btIMutex = bt::core::IMutex;
+using bt_IMutex = bt::core::IMutex;
 #endif // !BT_CORE_I_MUTEX_DECL
 
 // ===========================================================
@@ -125,7 +125,7 @@ namespace bt
 			 * @thread_safety - not thread-safe.
 			 * @throws - no exceptions.
 			**/
-			virtual btIMutex* getMutex() BT_NOEXCEPT = 0;
+			virtual bt_IMutex* getMutex() BT_NOEXCEPT = 0;
 
 			// ===========================================================
 			// METHODS
@@ -139,7 +139,7 @@ namespace bt
 			 * @returns - 'true' if locked, 'false' if failed.
 			 * @throws - (!) no exceptions
 			**/
-			virtual bool try_lock( btIMutex* const pMutex = nullptr ) BT_NOEXCEPT = 0;
+			virtual bool try_lock( bt_IMutex* const pMutex = nullptr ) BT_NOEXCEPT = 0;
 
 			/**
 			 * @brief
@@ -148,7 +148,7 @@ namespace bt
 			 * @thread_safety - thread-safe (atomic, no locks).
 			 * @throws - can throw exception (self-lock, etc).
 			**/
-			virtual void lock( btIMutex* const pMutex = nullptr ) = 0;
+			virtual void lock( bt_IMutex* const pMutex = nullptr ) = 0;
 
 			/**
 			 * @brief

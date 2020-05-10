@@ -30,16 +30,19 @@
 * POSSIBILITY OF SUCH DAMAGE.
 **/
 
+#ifndef BT_CORE_I_GRAPHICS_HXX
+#define BT_CORE_I_GRAPHICS_HXX
+
 // -----------------------------------------------------------
 
 // ===========================================================
 // INCLUDES
 // ===========================================================
 
-// HEADER
-#ifndef BT_CORE_BASE_LOG_HPP
-#include "BaseLog.hpp"
-#endif // !BT_CORE_BASE_LOG_HPP
+// Include bt_Engine API
+#ifndef BT_CFG_API_HPP
+#include "../../config/bt_api.hpp"
+#endif // !BT_CFG_API_HPP
 
 // ===========================================================
 // TYPES
@@ -53,100 +56,63 @@ namespace bt
 
 		// -----------------------------------------------------------
 
-		// ===========================================================
-		// CONSTRUCTOR & DESTRUCTOR
-		// ===========================================================
-
-		BaseLog::BaseLog()
+		/**
+		 * @brief
+		 * IGraphics - graphics (Windows, Frames, Views, Layouts, Forms) system.
+		 * 
+		 * @version 0.1
+		**/
+		class BT_API IGraphics
 		{
-		}
 
-		BaseLog::~BaseLog()
-		{
-		}
+			// -----------------------------------------------------------
 
-		// ===========================================================
-		// METHODS
-		// ===========================================================
+			// ===========================================================
+			// META
+			// ===========================================================
 
-		void BaseLog::Info(const char* const pMsg)
-		{
-		}
+			BT_INTERFACE
 
-		void BaseLog::Info_W(const wchar_t* const pMsg)
-		{
-		}
+			// -----------------------------------------------------------
 
-		void BaseLog::Debug(const char* const pMsg)
-		{
-		}
+		public:
 
-		void BaseLog::Debug_W(const wchar_t* const pMsg)
-		{
-		}
+			// -----------------------------------------------------------
 
-		void BaseLog::Warning(const char* const pMsg)
-		{
-		}
+			// ===========================================================
+			// DESTRUCTOR
+			// ===========================================================
 
-		void BaseLog::Warning_W(const wchar_t* const pMsg)
-		{
-		}
-
-		void BaseLog::Error(const char* const pMsg)
-		{
-		}
-
-		void BaseLog::Error_W(const wchar_t* const pMsg)
-		{
-		}
-
-		// ===========================================================
-		// ILog
-		// ===========================================================
-
-		void BaseLog::Print(const char* const pMsg, const bt_LogLevel logLvl)
-		{
-			switch( logLvl )
+			/**
+			 * @brief
+			 * IGraphics destructor.
+			 * 
+			 * @throws - can throw exception.
+			**/
+			virtual ~IGraphics()
 			{
-			case bt_LogLevel::Info:
-				Info( pMsg );
-				break;
-			case bt_LogLevel::Debug:
-				Debug( pMsg );
-				break;
-			case bt_LogLevel::Warning:
-				Warning( pMsg );
-				break;
-			case bt_LogLevel::Error:
-				Error( pMsg );
-				break;
 			}
-		}
 
-		void BaseLog::Print_W(const wchar_t* const pMsg, const bt_LogLevel logLvl)
-		{
-			switch ( logLvl )
-			{
-			case bt_LogLevel::Info:
-				Info_W(pMsg);
-				break;
-			case bt_LogLevel::Debug:
-				Debug_W(pMsg);
-				break;
-			case bt_LogLevel::Warning:
-				Warning_W(pMsg);
-				break;
-			case bt_LogLevel::Error:
-				Error_W(pMsg);
-				break;
-			}
-		}
+			// ===========================================================
+			// GETTERS & SETTERS
+			// ===========================================================
+
+			// ===========================================================
+			// METHODS
+			// ===========================================================
+
+			// -----------------------------------------------------------
+
+		}; /// bt::core::IGraphics
 
 		// -----------------------------------------------------------
 
 	} /// bt::core
 
 } /// bt
+using bt_IGraphics = bt::core::IGraphics;
+#define BT_CORE_I_GRAPHICS_DECL
 
 // -----------------------------------------------------------
+
+#endif // !BT_CORE_I_GRAPHICS_HXX

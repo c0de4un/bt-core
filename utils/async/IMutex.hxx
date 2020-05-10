@@ -39,7 +39,7 @@
 // INCLUDES
 // ===========================================================
 
-// Include btEngine.API
+// Include bt_Engine.API
 #ifndef BT_CFG_API_HPP
 #include "../../../config/bt_api.hpp"
 #endif // !BT_CFG_API_HPP
@@ -157,7 +157,7 @@ namespace bt
 	} /// bt::core
 
 } /// bt
-using btIMutex = bt::core::IMutex;
+using bt_IMutex = bt::core::IMutex;
 #define BT_CORE_I_MUTEX_DECL
 
 // -----------------------------------------------------------

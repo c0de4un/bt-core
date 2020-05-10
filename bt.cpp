@@ -41,8 +41,18 @@
 #include "bt.hpp"
 #endif // !BT_ENGINE_HPP
 
+// Include bt::ecs
+#ifndef BT_ECS_HPP
+#include "../ecs/ecs.hpp"
+#endif // !BT_ECS_HPP
+
 // DEBUG
 #ifdef BT_DEBUG
+
+// Include bt::core::Log
+#ifndef BT_CORE_LOG_HPP
+#include "core/utils/metrics/Log.hpp"
+#endif // !BT_CORE_LOG_HPP
 
 // Include bt::assert
 #ifndef BT_CFG_ASSERTIONS_HPP
@@ -65,7 +75,7 @@ namespace bt
 	// CONSTANTS & FIELDS
 	// ===========================================================
 
-	bt_sptr<btIEngine> API::mEngine( nullptr );
+	bt_sptr<bt_IEngine> API::mEngine( nullptr );
 
 	// ===========================================================
 	// CONSTRUCTOR & DESTRUCTOR
@@ -83,14 +93,14 @@ namespace bt
 	// GETTERS & SETTERS
 	// ===========================================================
 
-	bt_wptr<btIEngine> API::getEngine() BT_NOEXCEPT
+	bt_wptr<bt_IEngine> API::getEngine() BT_NOEXCEPT
 	{ return mEngine; }
 
 	// ===========================================================
 	// METHODS
 	// ===========================================================
 
-	void API::Initialize(bt_sptr<btIEngine>& engineInstance)
+	void API::Initialize(bt_sptr<bt_IEngine>& engineInstance)
 	{
 
 #ifdef BT_DEBUG // DEBUG
@@ -100,6 +110,17 @@ namespace bt
 		// Copy Engine pointer-value.
 		mEngine = engineInstance;
 
+		// Initialize ECS
+		if ( !ECS::Initialize() ) {
+
+#ifdef BT_DEBUG // DEBUG
+			bt_Log::Print( u8"API::Initialize - failed to initialize ECS !", bt_LogLevel::Error );
+#endif // DEBUG
+
+			Terminate();
+			return;
+		}
+
 	}
 
 	void API::Terminate()
@@ -107,6 +128,9 @@ namespace bt
 
 		// Release instance.
 		mEngine.reset();
+
+		// Terminate ECS
+		ECS::Terminate();
 
 	}
 

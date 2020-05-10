@@ -68,31 +68,20 @@ namespace bt
 		// CONSTRUCTOR & DESTRUCTOR
 		// ===========================================================
 
-		BaseLock::BaseLock(btIMutex* const pMutex, const bool defferLock)
+		BaseLock::BaseLock(bt_IMutex* const pMutex, const bool defferLock)
 			: mMutex( pMutex )
 		{
-			
-#ifdef BT_DEBUG // DEBUG
-			if ( !defferLock )
-			{
-				bt_assert( pMutex && "BaseLock - mutex is null !" );
-			}
-#endif // DEBUG
-
-			if ( !defferLock && mMutex )
-				this->lock();
 		}
 
 		BaseLock::~BaseLock()
 		{
-			this->unlock();
 		}
 
 		// ===========================================================
 		// GETTERS & SETTERS
 		// ===========================================================
 
-		btIMutex* BaseLock::getMutex() BT_NOEXCEPT
+		bt_IMutex* BaseLock::getMutex() BT_NOEXCEPT
 		{ return mMutex; }
 
 		// -----------------------------------------------------------

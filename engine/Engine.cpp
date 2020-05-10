@@ -106,20 +106,35 @@ namespace bt
 
 		bool Engine::onStart()
 		{// @TODO Engine::onStart
+
+#ifdef BT_DEBUG // DEBUG
+			bt_Log::Print( u8"Engine::onStart", bt_LogLevel::Info );
+#endif // DEBUG
+
 			return false;
 		}
 
-		bool Engine::Resume()
+		bool Engine::onResume()
 		{// @TODO Engine::Resume
+#ifdef BT_DEBUG // DEBUG
+			bt_Log::Print(u8"Engine::onResume", bt_LogLevel::Info);
+#endif // DEBUG
+
 			return false;
 		}
 
 		void Engine::onPause()
 		{// @TODO Engine::onPause
+#ifdef BT_DEBUG // DEBUG
+			bt_Log::Print(u8"Engine::onPause", bt_LogLevel::Info);
+#endif // DEBUG
 		}
 
 		void Engine::onStop()
 		{// @TODO Engine::onStop
+#ifdef BT_DEBUG // DEBUG
+			bt_Log::Print(u8"Engine::onStop", bt_LogLevel::Info);
+#endif // DEBUG
 		}
 
 		// -----------------------------------------------------------
